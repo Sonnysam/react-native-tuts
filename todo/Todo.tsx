@@ -5,7 +5,6 @@ import Header from './Header'
 export default function Todo() {
     return (
         <View>
-            <Text>Todo</Text>
             <Header />
         </View>
     )

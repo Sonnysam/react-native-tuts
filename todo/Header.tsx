@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
 export default function Header() {
     return (
         <View style={styles.container}>
-            <Text>Sonny<Text>Do</Text></Text>
+            <Text style={styles.firstText}>
+                Sonny<Text style={[styles.secondText, styles.firstText]}>Do</Text>
+            </Text>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -14,5 +16,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginTop: 55,
         flexDirection: "row",
-    }
-})
+    },
+    firstText: {
+        fontSize: 25,
+        fontWeight: "700",
+    },
+    secondText: {
+        color: "#7F27FF",
+    },
+});
