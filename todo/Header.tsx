@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
+import { Colors } from "../constants/Colors";
+import { Entypo } from '@expo/vector-icons';
+
 
 export default function Header() {
     return (
-        <View style={styles.container}>
+        <View style={{
+            paddingTop: 50,
+        }}>
             <Text style={styles.firstText}>
                 Sonny<Text style={[styles.secondText, styles.firstText]}>Do</Text>
             </Text>
@@ -12,16 +17,11 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 15,
-        marginTop: 55,
-        flexDirection: "row",
-    },
     firstText: {
         fontSize: 25,
         fontWeight: "700",
     },
     secondText: {
-        color: "#7F27FF",
+        color: Colors.primary,
     },
 });
