@@ -12,16 +12,15 @@ import { fontSize } from "../constants/fontSize";
 
 interface todoProp {
     // id: string;
-    todoItem: string;
+    items: string;
     onPress: () => void;
 }
 
-const TodoItems: React.FC<todoProp> = ({ todoItem, onPress }) => {
+const TodoItem: React.FC<todoProp> = ({ items, onPress }) => {
     return (
         <View style={styles.todoContainer}>
-            {/* <S></S> */}
             <View style={styles.item}>
-                <Text style={styles.todoItem}>{todoItem}</Text>
+                <Text style={styles.todoItem}>{items}</Text>
             </View>
             <View>
                 <TouchableOpacity onPress={onPress}>
@@ -46,12 +45,15 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.light,
         borderRadius: 8,
         paddingHorizontal: 16,
-        elevation: 2,
+        elevation: 1,
         borderWidth: 1,
         borderColor: Colors.secondary,
         height: 70,
         alignItems: "center",
         marginVertical: 10,
+        shadowColor: Colors.primary,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3
     },
     item: {
         flexDirection: "row",
@@ -63,4 +65,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TodoItems;
+export default TodoItem;

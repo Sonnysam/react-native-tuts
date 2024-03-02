@@ -11,42 +11,45 @@ import {
     FlatList
 } from "react-native";
 import Header from "./Header";
-import TodoItems from "./TodoItems";
+import TodoItem from "./TodoItem";
 import Bottom from "./Bottom";
 import { Entypo } from "@expo/vector-icons";
 import { Colors } from "../constants/Colors";
 
+
 export default function Todo() {
-    const [todos, setTodos] = useState<string[]>([]);
-    const [todoItem, setTodoItem] = useState<string>("");
+    //   use states
+    // add todo
+    // deletetodo
+
+    const [todo, setTodo] = useState<string>("");
+    const [TodoItems, setTodoItems] = useState<any[]>([]);
 
     const addTodo = () => {
-        setTodos([...todos, todoItem]);
-        setTodoItem("");
+        setTodoItems([...TodoItems, todo]);
+        setTodo("") // setTodo(null)
     };
 
     const deleteTodo = (index: number) => {
-        const newTodos = [...todos];
+        // console.log("hello delete");
+        const newTodos = [...TodoItems];
         newTodos.splice(index, 1);
-        setTodos(newTodos);
+        setTodoItems(newTodos)
     };
-
 
     return (
         <View style={styles.container}>
             <Header />
             <View style={styles.todos}>
                 <FlatList
-                    data={todos}
+                    data={TodoItems}
                     renderItem={({ item, index }) => (
-                        <TodoItems onPress={() => deleteTodo(index)} todoItem={item} />
+                        <TodoItem items={item} onPress={() => deleteTodo(index)} />
                     )}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={(_item, index) => index.toString()}
                 />
-                {/* <TodoItems todoItem="Go to the park" onPress={() => addTodo()} /> */}
+                {/* <TodoItem items="Please Subscribe 🚀" onPress={() => addTodo()} /> */}
             </View>
-
-
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 keyboardVerticalOffset={100}
@@ -55,10 +58,10 @@ export default function Todo() {
             >
                 <TextInput
                     placeholder="Type todo here..."
-                    onChangeText={(text) => setTodos(text)}
-                    value={todoItem}
                     style={styles.input}
                     placeholderTextColor="black"
+                    value={todo}
+                    onChangeText={(e) => setTodo(e)}
                 />
                 <TouchableOpacity style={styles.addIcon} onPress={() => addTodo()}>
                     <Text>
@@ -73,6 +76,7 @@ export default function Todo() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: 15,
     },
     todos: {
         marginVertical: 20,
